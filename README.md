@@ -2,9 +2,7 @@
 
 This is README file.
 
-Hello, my name is Jia Rong (Jerry) Dang and this is my readme for CSCB09 Assignment 3 - System Monitoring Tool -- Concurrency & Signals.
-
-The system monitor program consists of the three files: stats_functions.c stats_functions.h and main.c. Using the makefile, the final program name will be the same as assignment 1, systemMonitoringTool or depending on which method is used to compile the program, it could also just be main.c. I will discuss later on how to assembly/run my program.
+The system monitor program consists of the three files: stats_functions.c stats_functions.h and main.c. Using the makefile, I will discuss later on how to assembly/run my program.
 
 Some other useful libraries that I used were string.h and math.h, signal.h, stdbool.h and of course all the libraries that were necessary to get all the system information. Here are a list of libraries that I used for this assignment: #include <stdio.h> #include <stdlib.h> #include <unistd.h> #include <string.h> #include <signal.h> #include <stdbool.h> #include <sys/sysinfo.h> #include <sys/utsname.h> #include <sys/resource.h> #include <utmp.h> #include <math.h>
 
