@@ -1,6 +1,4 @@
-# This is my CSCB09 Assignment 3 makefile
-# Name: Jia Rong (Jerry) Dang
-# Student number: 1005838685
+# makefile
 
 CC=gcc
 CFLAGS=-Wall -Werror -g
