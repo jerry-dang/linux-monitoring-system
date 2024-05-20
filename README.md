@@ -60,7 +60,7 @@ void handler() - Handles the signal interceptions from the user. If Ctrl-z is de
 
 int main() - main program that controls and manages the CLAs and the way information is delivered to the screen in a conccurent fashion.
 
-How to Run/Use My Program:
+## How to Run/Use My Program
 
 To use my program, the user can choose between a couple of options for the command line arguments.
 
