@@ -1,6 +1,6 @@
 # linux-monitoring-system
 
-This is README file.
+## This is README file.
 
 The system monitor program consists of the three files: stats_functions.c stats_functions.h and main.c. Using the makefile, I will discuss later on how to assembly/run my program.
 
