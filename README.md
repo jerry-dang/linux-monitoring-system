@@ -14,7 +14,7 @@ In this implementation of a system monitor for assignment 3, I think the main ch
 
 Each function is documented in the code file itself but here is a brief summary of each function. Function signature is also in the documented comments in the code.
 
-In stats_functions.c:
+### In stats_functions.c:
 
 memoryUsage() - Acquires the general process memory usage in kilobytes and returns it
 
@@ -32,11 +32,11 @@ void passCpu() - Write to pipe about cpu utilization for the current process
 
 void passSystem() - Write to pipe about system information for the current process
 
-In stats_functions.h:
+### In stats_functions.h:
 
 Same as stats_functions.c - this is just where it is defined.
 
-In main.c:
+### In main.c:
 
 *Functions helping with formatting the output (self-explanatory) { void separator() void header() void sequential() void terminate() void continuation() void wrong_input() void clear() }
 
@@ -60,39 +60,33 @@ void handler() - Handles the signal interceptions from the user. If Ctrl-z is de
 
 int main() - main program that controls and manages the CLAs and the way information is delivered to the screen in a conccurent fashion.
 
-## How to Run/Use My Program
+### How to Run/Use My Program
 
 To use my program, the user can choose between a couple of options for the command line arguments.
 
 User flags: - "--system" : if this feature flag is present as an argument, then the user will ONLY be able to see the system usage information such as the physical/virtual memory usage and cpu information and usage. (Note that this flag should be used at the same time as "--users") - "--users" : if this feature flag is present as an argument, then the user will ONLY be able to see how many users are connected in a given point in time and how many sessions each user is connected to. (Note that this flag should be used at the same time as "--system") - "--graphics" : if this feature flag is present as an argument, then the user will be able to see additional details for the "--system" flag as a more visual approach will be displayed to enhance the depth of the information such as differences between memory usage in the system memory and cpu usage. - "--sequential" : if this feature flag is present as an argument, then the user would be able to see every sample generated printed line by line, instead of seeing all the output for every sample. Useful for output redirection if the output is desired to be stored in a file. - *"--samples=N" : if this feature flag is present as an argument with an N value specified, then the user will be able to see (depending on which previous flags are detected) the information printed concurrently through N samples over a tdelay=T amount of time between each sample displayed. If the N value is not specified, the default value of N is 10. - *"--tdelay=T" : if this feature flag is present as an argument with a T value specified, then the user will be able to control the delay in seconds between N samples printed to the console.
 
-                         *IMPORTANT: this feature flag is also implemented as a positional argument, meaning that if this argument is not 
-                          present in the command line arguments given by the user, the user can still specify the number of samples by 
-                          simply providing a number (e.g. 8) as the second last argument will be detected as the number of samples if 
-                          and only if the number of tdelay is also provided as just a number as the absolute LAST argument provided.
+IMPORTANT: this feature flag is also implemented as a positional argument, meaning that if this argument is not  present in the command line arguments given by the user, the user can still specify the number of samples by simply providing a number (e.g. 8) as the second last argument will be detected as the number of samples if and only if the number of tdelay is also provided as just a number as the absolute LAST argument provided.
 
-                          E.g. ./a.out 8 3 (GOOD - if both arguments are provided, the second last is the sample size and last is the delay
-                          in secs)
+E.g. `./a.out 8 3` (GOOD - if both arguments are provided, the second last is the sample size and last is the delay in secs)
 
-                          Another example: E.g. ./a.out 8 (BAD - no tdelay number provided and program will not work as intended).
+Another example: E.g. `./a.out 8` (BAD - no tdelay number provided and program will not work as intended).
 
-                          Another example: E.g. ./a.out --samples=4 (GOOD - if only --samples is provided, then tdelay will just be defaulted 
-                          to 1 sec)
+Another example: E.g. `./a.out --samples=4` (GOOD - if only --samples is provided, then tdelay will just be defaulted to 1 sec)
 
-                          Another example: E.g. ./a.out 8 --tdelay=2 (BAD - cannot mix and match, either provide both as numbers or use --samples 
-                          and/or tdelay as argument(s))
+Another example: E.g. `./a.out 8 --tdelay=2` (BAD - cannot mix and match, either provide both as numbers or use --samples and/or tdelay as argument(s))
 
-                          This applies to tdelay as well, so either both arguments have to be provided in only numbers are the second last 
-                          and last argument or --samples and --delay have to be specified for a desired number of samples and delay. If 
-                          neither are provided, then default values will be assigned.
-                          
-To run the program, I would type "gcc main.c stats_functions.c" which will compile the file and create an executable "a.out" in the current directory. This will only work if all the c files and .h (stats_functions.h) file is in the same directory. Then, "./a.out ["--system"] ["--users"] ["--graphics"] ["--sequential"] ["--samples=N"] ["--tdelay=T"]" where the arguments in brackets are technically options, it would be the user's choice for which one they would want to see.
+This applies to tdelay as well, so either both arguments have to be provided in only numbers are the second last and last argument or --samples and --delay have to be specified for a desired number of samples and delay. If neither are provided, then default values will be assigned.
 
-Another way would be to use: "./a.out ["--system"] ["--users"] ["--graphics"] ["--sequential"] [any integer] [any integer] where the last two arguments are positional arguments for --samples and --tdelay but both have to be provided to work as intended as mentioned above.
+### Running the Program
+
+To run the program, I would type `gcc main.c stats_functions.c` which will compile the file and create an executable "a.out" in the current directory. This will only work if all the c files and .h (stats_functions.h) file is in the same directory. Then, `./a.out ["--system"] ["--users"] ["--graphics"] ["--sequential"] ["--samples=N"] ["--tdelay=T"]` where the arguments in brackets are technically options, it would be the user's choice for which one they would want to see.
+
+Another way would be to use: `./a.out ["--system"] ["--users"] ["--graphics"] ["--sequential"] [any integer] [any integer]` where the last two arguments are positional arguments for --samples and --tdelay but both have to be provided to work as intended as mentioned above.
 
 A third way to run this program would be to make use of the makefile I created for this assignment (which was required). To run the makefile, make sure that all other files namely, stats_functions.h, stats_functions.c, and main.c are currently in the same directory as the makefile. Then type "make" in the command line and in order to run the program, simply type in the command line: ~$ ./systemMonitoringTool.
 
-The command line arguments work the same way as mentioned in the previous two methods but here is the version for the third method: "./systemMonitoringTool ["--system"] ["--users"] ["--graphics"] ["--sequential"] ["--samples=N"] ["--tdelay=T"]" or "./systemMonitoringTool ["--system"] ["--users"] ["--graphics"] ["--sequential"] [any integer] [any integer]" with all the previous dependencies and conditions as well.
+The command line arguments work the same way as mentioned in the previous two methods but here is the version for the third method: `./systemMonitoringTool ["--system"] ["--users"] ["--graphics"] ["--sequential"] ["--samples=N"] ["--tdelay=T"]` or `./systemMonitoringTool ["--system"] ["--users"] ["--graphics"] ["--sequential"] [any integer] [any integer]` with all the previous dependencies and conditions as well.
 
 *IMPORTANT: For the cpu utilization, the first sample is simply the absolute cpu usage assuming that there is no previous sample, so the number could be a bit large but I believe that it was a good method since it is quite nice when the program is run with graphics and actually shows the difference between that sample and the next ones.
 
